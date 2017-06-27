@@ -243,4 +243,7 @@
 		</pluginManagement>
 
 	</build>
+	<modules>
+		<module>org.myframework.common</module>
+	</modules>
 </project>
