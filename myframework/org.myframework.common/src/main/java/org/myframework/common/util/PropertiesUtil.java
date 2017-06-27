@@ -36,7 +36,7 @@ import org.springframework.util.PropertiesPersister;
 
 /**
  * ClassName: PropertiesUtil <br>
- * Description: TODO
+ * Description: 属性配置文件读取工具类
  * @author xiezbmf
  * @Date 2017年6月27日下午3:54:23 <br>
  * @version
