@@ -8,4 +8,11 @@
   <artifactId>org.myframework.common</artifactId>
   <name>org.myframework.common</name>
   <description>org.myframework.common</description>
+  <dependencies>
+ 	<dependency>
+		<groupId>org.bouncycastle</groupId>
+		<artifactId>bcprov-jdk15on</artifactId>
+		<version>1.50</version>
+	</dependency>
+  </dependencies>
 </project>
