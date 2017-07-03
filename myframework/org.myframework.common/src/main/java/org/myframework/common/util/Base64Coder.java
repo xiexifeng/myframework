@@ -9,13 +9,8 @@
 
 package org.myframework.common.util;
 
-import java.io.UnsupportedEncodingException;
-
+import org.apache.commons.codec.Charsets;
 import org.apache.commons.codec.binary.Base64;
-import org.myframework.common.constant.ConfigConst;
-import org.myframework.common.log.CommonLogger;
-import org.myframework.common.log.Log;
-import org.myframework.common.log.LogTemplate;
 
 /**
  * ClassName: Base64Coder <br>
@@ -27,30 +22,22 @@ import org.myframework.common.log.LogTemplate;
  * @since JDK 1.6
  */
 public class Base64Coder {
-	private static String cmd = "common:Base64Coder";
-
-	private static final Log logger = CommonLogger.getInstance();
 
 	public static String encodeString(String content) {
-		try {
-			return new String(Base64.encodeBase64(content
-					.getBytes(ConfigConst.DEFAULT_ENCODE)),
-					ConfigConst.DEFAULT_ENCODE);
-		} catch (UnsupportedEncodingException e) {
-			logger.error(String.format(LogTemplate.COMMON_SYS_FAIL, cmd,
-					"encode String " + content + " is failed"), e);
-		}
-		return null;
+		byte[] data = content.getBytes(Charsets.UTF_8);
+		return encodBase64String(data);
 	}
 
 	public static String decodeString(String content) {
-		try {
-			return new String(Base64.decodeBase64(content),
-					ConfigConst.DEFAULT_ENCODE);
-		} catch (UnsupportedEncodingException e) {
-			logger.error(String.format(LogTemplate.COMMON_SYS_FAIL, cmd,
-					"decode String " + content + " is failed"), e);
-		}
-		return null;
+		byte[] data = decodeBase64(content);
+	    return new String(data, Charsets.UTF_8);
+	}
+
+	public static String encodBase64String(byte[] bytes) {
+		return Base64.encodeBase64String(bytes);
+	}
+
+	public static byte[] decodeBase64(String content) {
+		return Base64.decodeBase64(content);
 	}
 }
