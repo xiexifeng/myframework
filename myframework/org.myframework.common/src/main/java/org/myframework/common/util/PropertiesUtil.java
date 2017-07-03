@@ -25,6 +25,7 @@ import org.myframework.common.constant.ConfigConst;
 import org.myframework.common.log.CommonLogger;
 import org.myframework.common.log.Log;
 import org.myframework.common.log.LogTemplate;
+import org.myframework.common.secret.aes.AESCoder;
 import org.myframework.common.tool.FileTool;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -219,7 +220,7 @@ private static final Log logger = CommonLogger.getInstance();
                 Matcher regexMatcher = regex.matcher(propertyName);
                 if (regexMatcher.find()) {
                     String Key = ConfigConst.DB_PWD_ENCRTY_KEY;
-                    return AES.decryptToStrFromBase64(propertyValue, Key);
+                    return AESCoder.decryptToStrFromBase64(propertyValue, Key);
                 }
             }
         } catch (Exception e) {
