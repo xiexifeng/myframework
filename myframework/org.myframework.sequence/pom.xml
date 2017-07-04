@@ -17,4 +17,11 @@
 			</plugin>
 		</plugins>
 	</build>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.myframework</groupId>
+  		<artifactId>my-common</artifactId>
+  		<version>1.0</version>
+  	</dependency>
+  </dependencies>
 </project>

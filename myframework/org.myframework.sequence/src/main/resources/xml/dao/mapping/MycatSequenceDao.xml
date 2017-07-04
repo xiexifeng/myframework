@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.myframework.sequence.dao.MycatSequenceDao">
+    
+    <resultMap id="FullResultMap" type="mycatSequence">
+        <id property="name" column="name" />
+        <result property="currentValue" column="current_value" />
+        <result property="increment" column="increment" />
+    </resultMap>
+    
+    <insert id="saveMycatSequence" parameterType="mycatSequence">
+    	insert into mycat_sequence (name,current_value,increment) values
+    	(#{name},#{currentValue},#{increment})
+    </insert>
+    
+	<select id="queryMycatSequenceByName" resultMap="FullResultMap" parameterType="java.lang.String">
+		select name,current_value,increment from mycat_sequence 
+		where name=#{name}
+	</select>
+	
+	<delete id="deleteMycatSequenceByName" parameterType="java.lang.String">
+		delete from mycat_sequence where name=#{name}
+	</delete>
+	
+	<update id="updateMycatSequence" parameterType="mycatSequence">
+		update mycat_sequence set name=#{name}
+		<if test="currentValue >0">
+			,current_value=#{currentValue}
+		</if>
+		<if test="increment >0">
+			,increment=#{increment}
+		</if>
+		where name=#{name}
+	</update>
+	
+</mapper>

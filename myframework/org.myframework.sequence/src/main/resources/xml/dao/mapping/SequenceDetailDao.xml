@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.myframework.sequence.dao.SequenceDetailDao">
+    
+    <resultMap id="FullResultMap" type="sequenceDetail">
+            <id property="name" column="name" />
+            <result property="prefixNo" column="prefix_no" />
+            <result property="seqLength" column="seq_length" />
+            <result property="seqDesc" column="seq_desc" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+    </resultMap>
+    
+    <insert id="saveSequenceDetail" parameterType="sequenceDetail">
+    	insert into sequence_detail (name,prefix_no,seq_length,seq_desc,create_time) values
+    	(#{name},#{prefixNo},#{seqLength},#{seqDesc},#{createTime})
+    </insert>
+    
+	<select id="querySequenceDetailByName" resultMap="FullResultMap" parameterType="java.lang.String">
+		select name,prefix_no,seq_length,seq_desc,create_time,update_time from sequence_detail 
+		where name=#{name}
+	</select>
+	
+	<delete id="deleteSequenceDetailByName" parameterType="java.lang.String">
+		delete from sequence_detail where name=#{name}
+	</delete>
+	
+	<insert id="updateSequenceDetail" parameterType="sequenceDetail">
+    	update sequence_detail set name=#{name}
+    	<if test="prefixNo !=null">
+    	,prefix_no=#{prefixNo}
+    	</if>
+    	<if test="seqLength >0">
+    	,seq_length=#{seqLength}
+    	</if>
+    	<if test="seqDesc !=null">
+    	,seq_desc =#{seqDesc}
+    	</if>
+    	<if test="updateTime !=null">
+    	,update_time=#{updateTime}
+    	</if>
+    	where name=#{name}
+    </insert>
+	
+</mapper>
