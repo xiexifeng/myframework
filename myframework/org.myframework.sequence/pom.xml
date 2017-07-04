@@ -5,18 +5,10 @@
     <artifactId>myframework</artifactId>
     <version>1.0</version>
   </parent>
-  <artifactId>my-common</artifactId>
-  <name>org.myframework.common</name>
-  <description>org.myframework.common</description>
-  <dependencies>
- 	<dependency>
-		<groupId>org.bouncycastle</groupId>
-		<artifactId>bcprov-jdk15on</artifactId>
-		<version>1.50</version>
-	</dependency>
-  </dependencies>
+  <artifactId>my-sequence</artifactId>
+  <name>my-sequence</name>
   <build>
-		<finalName>my-common</finalName>
+		<finalName>my-sequence</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

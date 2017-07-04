@@ -245,5 +245,6 @@
 	</build>
 	<modules>
 		<module>org.myframework.common</module>
+		<module>org.myframework.sequence</module>
 	</modules>
 </project>
