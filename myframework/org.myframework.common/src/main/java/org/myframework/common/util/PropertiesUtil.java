@@ -44,7 +44,7 @@ import org.springframework.util.PropertiesPersister;
  * @since JDK 1.6
  */
 public class PropertiesUtil extends PropertyPlaceholderConfigurer{
-private static final Log logger = CommonLogger.getInstance();
+	private static final Log logger = CommonLogger.getInstance();
 	
 	private String cmd = "common:configProperties";
 	
