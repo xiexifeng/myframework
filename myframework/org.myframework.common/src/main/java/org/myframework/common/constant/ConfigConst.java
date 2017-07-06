@@ -45,4 +45,5 @@ public interface ConfigConst {
 	 * GEN_ENCRYPT_KEY:生成加密key的key.
 	 */
 	String GEN_ENCRYPT_KEY = "org.myframework.";
+	
 }

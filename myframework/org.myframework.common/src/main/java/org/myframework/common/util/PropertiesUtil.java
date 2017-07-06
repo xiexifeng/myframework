@@ -315,6 +315,16 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer{
        return StringUtil.String2Long(val, dv);
    }
    
+   public static boolean getPropertyBoolean(String name,boolean dv){
+       String val = getProperty(name);
+       try{
+    	   return Boolean.parseBoolean(val);
+       }catch(Exception e){
+    	   
+       }
+       return dv;
+   }
+   
    private static boolean isPasswordField(String keystr){
        String key = keystr.toLowerCase();
        return (key.indexOf("superpwd")>0 || key.indexOf("password")>0 ||  key.indexOf("pwd")>0);
