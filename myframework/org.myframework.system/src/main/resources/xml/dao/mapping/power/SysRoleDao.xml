@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.myframework.system.dao.power.SysRoleDao">
+    <resultMap id="FullResultMap" type="sysRole">
+        <result property="roleId" column="role_id" />
+        <result property="roleName" column="role_name" />
+        <result property="roleDesc" column="role_desc" />
+        <result property="isEnable" column="is_enable" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="remark" column="remark" />
+    </resultMap>
+    <insert id="saveSysRole" parameterType="sysRole" >
+    INSERT INTO sys_role(role_id,
+    role_name,role_desc,is_enable,create_time,update_time,
+    remark)
+     VALUES (#{roleId},
+    #{roleName},#{roleDesc},#{isEnable},#{createTime},#{updateTime},
+    #{remark})
+    </insert>
+    <update id="updateSysRoleById" parameterType="sysRole" >
+    update sys_role set update_time=#{updateTime}
+    <if test="roleName !=null and roleName !=''">,role_name=#{roleName}</if>
+    <if test="roleDesc !=null and roleDesc !=''">,role_desc=#{roleDesc}</if>
+    <if test="isEnable !=null and isEnable !=''">,is_enable=#{isEnable}</if>
+    <if test="createTime !=null and createTime !=''">,create_time=#{createTime}</if>
+    <if test="remark !=null and remark !=''">,remark=#{remark}</if>
+     where role_id=#{roleId}
+    </update>
+    <delete id="deleteSysRoleById">
+    delete from sys_role where role_id=#{roleId}
+    </delete>
+    <select id="querySysRoleByParams" resultMap="FullResultMap" parameterType="map" >
+    select role_id,
+    role_name,role_desc,is_enable,create_time,update_time,
+    remark from sys_role where 1=1
+    <if test="roleId !=null and roleId !=''"> and role_id=#{roleId}</if>
+    <if test="roleName !=null and roleName !=''"> and role_name=#{roleName}</if>
+    <if test="roleDesc !=null and roleDesc !=''"> and role_desc=#{roleDesc}</if>
+    <if test="isEnable !=null and isEnable !=''"> and is_enable=#{isEnable}</if>
+    </select>
+</mapper>

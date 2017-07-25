@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.myframework.system.dao.power.SysMenuDao">
+    <resultMap id="FullResultMap" type="sysMenu">
+        <result property="menuId" column="menu_id" />
+        <result property="menuName" column="menu_name" />
+        <result property="menuCode" column="menu_code" />
+        <result property="menuType" column="menu_type" />
+        <result property="menuUrl" column="menu_url" />
+        <result property="menuOrder" column="menu_order" />
+        <result property="menuStyle" column="menu_style" />
+        <result property="menuParentId" column="menu_parent_id" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="remark" column="remark" />
+    </resultMap>
+    <insert id="saveSysMenu" parameterType="sysMenu" >
+    INSERT INTO sys_menu(menu_id,
+    menu_name,menu_code,menu_type,menu_url,menu_order,
+    menu_style,menu_parent_id,create_time,update_time,remark
+    )
+     VALUES (#{menuId},
+    #{menuName},#{menuCode},#{menuType},#{menuUrl},#{menuOrder},
+    #{menuStyle},#{menuParentId},#{createTime},#{updateTime},#{remark}
+    )
+    </insert>
+    <update id="updateSysMenuById" parameterType="sysMenu" >
+    update sys_menu set update_time=#{updateTime}
+    <if test="menuId !=null and menuId !=''">,menu_id=#{menuId}</if>
+    <if test="menuName !=null and menuName !=''">,menu_name=#{menuName}</if>
+    <if test="menuCode !=null and menuCode !=''">,menu_code=#{menuCode}</if>
+    <if test="menuType !=null and menuType !=''">,menu_type=#{menuType}</if>
+    <if test="menuUrl !=null and menuUrl !=''">,menu_url=#{menuUrl}</if>
+    <if test="menuOrder !=null and menuOrder !=''">,menu_order=#{menuOrder}</if>
+    <if test="menuStyle !=null and menuStyle !=''">,menu_style=#{menuStyle}</if>
+    <if test="menuParentId !=null and menuParentId !=''">,menu_parent_id=#{menuParentId}</if>
+    <if test="createTime !=null and createTime !=''">,create_time=#{createTime}</if>
+    <if test="updateTime !=null and updateTime !=''">,update_time=#{updateTime}</if>
+    <if test="remark !=null and remark !=''">,remark=#{remark}</if>
+     where id=#{id}
+    </update>
+    <delete id="deleteSysMenuById">
+    delete from sys_menu where id=#{id}
+    </delete>
+    <select id="querySysMenuByParams" resultMap="FullResultMap" parameterType="map" >
+    select menu_id,
+    menu_name,menu_code,menu_type,menu_url,menu_order,
+    menu_style,menu_parent_id,create_time,update_time,remark
+     from sys_menu where 1=1
+    <if test="menuId !=null and menuId !=''"> and menu_id=#{menuId}</if>
+    <if test="menuName !=null and menuName !=''"> and menu_name=#{menuName}</if>
+    <if test="menuCode !=null and menuCode !=''"> and menu_code=#{menuCode}</if>
+    <if test="menuType !=null and menuType !=''"> and menu_type=#{menuType}</if>
+    <if test="menuUrl !=null and menuUrl !=''"> and menu_url=#{menuUrl}</if>
+    <if test="menuOrder !=null and menuOrder !=''"> and menu_order=#{menuOrder}</if>
+    <if test="menuStyle !=null and menuStyle !=''"> and menu_style=#{menuStyle}</if>
+    <if test="menuParentId !=null and menuParentId !=''"> and menu_parent_id=#{menuParentId}</if>
+    </select>
+</mapper>

@@ -193,10 +193,20 @@
 			<version>2.8.1</version>
 		</dependency>
 		<dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
+		<dependency>
+		  <groupId>org.codehaus.jackson</groupId>
+		  <artifactId>jackson-mapper-asl</artifactId>
+		  <version>1.2.1</version>
+  		</dependency>
 	</dependencies>
 	<build>
 		<finalName>myframework</finalName>
@@ -246,5 +256,8 @@
 	<modules>
 		<module>org.myframework.common</module>
 		<module>org.myframework.sequence</module>
+		<module>org.myframework.system</module>
+		<module>org.myframework.cache</module>
+		<module>org.myframework.web</module>
 	</modules>
 </project>

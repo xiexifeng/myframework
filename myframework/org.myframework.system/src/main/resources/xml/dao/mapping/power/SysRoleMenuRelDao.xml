@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.myframework.system.dao.power.SysRoleMenuRelDao">
+    <resultMap id="FullResultMap" type="sysRoleMenuRel">
+        <result property="roleId" column="role_id" />
+        <result property="menuId" column="menu_id" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <result property="remark" column="remark" />
+    </resultMap>
+    <insert id="saveSysRoleMenuRel" parameterType="sysRoleMenuRel" >
+    INSERT INTO sys_role_menu_rel(role_id,
+    menu_id,create_time,update_time,remark)
+     VALUES (#{roleId},
+    #{menuId},#{createTime},#{updateTime},#{remark})
+    </insert>
+    <delete id="deleteSysRoleMenuRelById">
+    delete from sys_role_menu_rel where role_id=#{roleId} and menu_id=#{menuId}
+    </delete>
+    <select id="querySysRoleMenuRelByParams" resultMap="FullResultMap" parameterType="map" >
+    select role_id,
+    menu_id,create_time,update_time,remark from sys_role_menu_rel where 1=1
+    <if test="roleId !=null and roleId !=''"> and role_id=#{roleId}</if>
+    <if test="menuId !=null and menuId !=''"> and menu_id=#{menuId}</if>
+    <if test="createTime !=null and createTime !=''"> and create_time=#{createTime}</if>
+    <if test="updateTime !=null and updateTime !=''"> and update_time=#{updateTime}</if>
+    <if test="remark !=null and remark !=''"> and remark=#{remark}</if>
+    </select>
+</mapper>
