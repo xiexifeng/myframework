@@ -309,6 +309,10 @@ public class MemoryCache {
 		}
 	}
 	
+	public static MemcachedClient getMemcachedClient() {
+		return memcachedClient;
+	}
+	
 	public static void main(String[] args) {
 		boolean flag = MemoryCache.set("123", "hello world!");
 		System.out.println(flag);
@@ -330,4 +334,6 @@ public class MemoryCache {
 		 
 //		MemoryCache.memcachedClient.shutdown();
 	}
+
+	
 }

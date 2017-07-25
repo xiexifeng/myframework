@@ -42,7 +42,7 @@ public class RedisCache {
 	 * @author xiezbmf
 	 * @Date 2017年7月5日下午4:28:55 <br>
 	 */
-	public static void initJedisPool() {
+	private static void initJedisPool() {
 		try {
 			JedisPoolConfig config = new JedisPoolConfig();
 			config.setMaxActive(RedisConfig.MAX_ACTIVE);

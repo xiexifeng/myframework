@@ -40,7 +40,7 @@ public class LogTemplate {
 	   * @return 日志内容
 	   */
 	  public static final String genCommonBizLogStr(String cmd,String result,String sid,
-	      String tid,int uid,String msg) {
+	      String tid,String uid,String msg) {
 	    return String.format(COMMON_BIZ, cmd,result,sid,tid,uid,msg);
 	  }
 	  
@@ -59,7 +59,7 @@ public class LogTemplate {
 	   * @return 日志内容
 	   */
 	  public static final String genCommonBizReqLogStr(String cmd,String result,String sid,
-	      String tid,int uid,String msg,String data) {
+	      String tid,String uid,String msg,String data) {
 	    return String.format(COMMON_BIZ_REQ, cmd,result,sid,tid,uid,msg,data);
 	  }
 	  
