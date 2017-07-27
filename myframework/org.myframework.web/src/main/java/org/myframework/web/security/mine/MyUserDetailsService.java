@@ -9,7 +9,12 @@
 
 package org.myframework.web.security.mine;
 
-import org.myframework.web.security.DefaultUserDetailsService;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,7 +32,12 @@ public class MyUserDetailsService  implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		return null;
+        System.out.println("userDetail********");
+        Collection <GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
+        GrantedAuthority auth2 = new SimpleGrantedAuthority("ROLE_ADMIN");
+        auths.add(auth2);
+        User user = new User(username,"123121",true,true,true,true,auths);
+        return user;
 	}
 
 }

@@ -172,9 +172,11 @@ public class StringUtil extends StringUtils {
 			throw new Exception("serialNum length is bigger than set:"+length);
 		}
 	}
-    public static void main(String[] args) {
-		String s = "入账:还款-";
-		System.out.println(s.length());
+	public static boolean equals(String leftStr, String rightStr) {
+		if(leftStr!=null){
+			return leftStr.equals(rightStr);
+		}
+		return false;
 	}
 
 

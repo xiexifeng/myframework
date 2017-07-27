@@ -52,6 +52,7 @@ public class LoginController {
 		String accPwd = request.getParameter("accPwd");
 		String loginIp = NetHelper.getIpAddr(request);
 		String loginClient = request.getHeader("User-Agent");
+		loginClient = loginClient.substring(0,100);
 		BasicServiceModel bsm = loginService.login(userAccount, accPwd,
 				loginIp, loginClient);
 		ModelAndView mv = new ModelAndView();
@@ -94,6 +95,20 @@ public class LoginController {
 	public ModelAndView showMenu(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("showMenu");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/user.do")
+	public ModelAndView user(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/admin.do")
+	public ModelAndView admin(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin");
 		return mv;
 	}
 }
