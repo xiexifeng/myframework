@@ -9,7 +9,7 @@
 
 package org.myframework.common.exception;
 
-import org.apache.commons.lang.StringUtils;
+import org.myframework.common.util.StringUtil;
 
 /**
  * ClassName: BaseException <br>
@@ -49,7 +49,7 @@ public class BaseException extends Exception {
 	}
 	
 	boolean isLegalErrCode(String startCode,int codeLength){
-		if(StringUtils.isEmpty(errCode)||!errCode.startsWith(startCode)||errCode.length()!=codeLength){
+		if(StringUtil.isEmpty(errCode)||!errCode.startsWith(startCode)||errCode.length()!=codeLength){
 			return false;
 		}
 		return true;

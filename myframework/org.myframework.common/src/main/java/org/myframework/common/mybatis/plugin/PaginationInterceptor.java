@@ -37,7 +37,7 @@ import org.myframework.common.mybatis.dialect.OracleDialect;
 
 /**
  * ClassName: PaginationInterceptor <br>
- * Description: TODO
+ * Description: 分页拦截器
  * @author xiezbmf
  * @Date 2017年6月27日下午3:18:08 <br>
  * @version
