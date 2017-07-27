@@ -13,31 +13,43 @@
 	<http pattern="/res/**" security="none"/>
  	<http>
  	 	<form-login login-page="/login.jsp" default-target-url="/main.do" authentication-failure-url="/error-noauth.jsp"/>
-        <!--访问/admin.jsp资源的用户必须具有ROLE_ADMIN的权限 -->
-        <intercept-url pattern="/admin.jsp" access="ROLE_ADMIN" />
         <!--访问/**资源的用户必须具有ROLE_USER的权限 -->
-        <intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
-         <logout logout-url="/logout.do" logout-success-url="/index.html" invalidate-session="true"  
+        <!-- <intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" /> -->
+        <logout logout-url="/logout.do" logout-success-url="/index.html" invalidate-session="true"  
                 delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/> 
         <session-management invalid-session-url="/invalidSession.html">
             <concurrency-control max-sessions="1" error-if-maximum-exceeded="false" />
         </session-management>
          <!-- 用于 cookie 登陆 remember-me-parameter 中的值必须和表单中的 rememberMe name 一致 -->
         <remember-me remember-me-parameter="rememberMe" />
+        
+        <custom-filter ref="localFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
     </http>
     
     <!-- 认证管理器，实现用户认证的入口，主要实现userDetailsService -->
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsService">
-        	<!-- 密码加密 -->
-			<!-- <password-encoder ref="myPasswordEncoder"/> -->
+        <authentication-provider user-service-ref="myUserDetailService">
         </authentication-provider>
     </authentication-manager>
         
-  	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
- 		 <beans:property name="dataSource" ref="dataSource_db_1"/>
- 	</beans:bean>
-	<!-- 密码加密 -->
-	<beans:bean id="myPasswordEncoder" class="org.myframework.web.security.second.MyPasswordEncoder"/>
+  	 <!-- 自定义一个filter,必须包含authenticationManager,accessDecisionManager,
+    securityMetadataSource三个属性 所有的功能都在这三个类中实现-->
+    <beans:bean id="localFilter" class="org.myframework.web.security.mine.LocalFilterSecurityInterceptor">
+        <beans:property name="authenticationManager"  ref="authenticationManager" />
+        <beans:property name="accessDecisionManager"  ref ="accessDecisionManager"/>
+        <beans:property name="securityMetadataSource" ref="securityMetadataSource"/>
+    </beans:bean>
+    
+    <beans:bean id="myUserDetailService"
+        class="org.myframework.web.security.mine.MyUserDetailsService">
+    </beans:bean>
+    
+    <!-- 访问决策，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+    <beans:bean id="accessDecisionManager"
+        class="org.myframework.web.security.mine.LocalAccessDecisionManager" />
+    <!-- 获取访问url对应的所有权限 -->  
+    <beans:bean id="securityMetadataSource" 
+        class="org.myframework.web.security.mine.LocalSecurityMetadataSource"/>
+	
 	
 </beans:beans>
